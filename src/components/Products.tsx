@@ -112,7 +112,7 @@ const Products: React.FC<ProductsProps> = ({ onSectionChange }) => {
                 Fale Conosco
               </button>
               <a 
-                href="https://wa.me/5511999999999" 
+                href="https://www.whatsapp.com/?lang=pt_BR" 
                 target="_blank" 
                 rel="noopener noreferrer"
                 className="bg-green-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-green-700 transition-colors"

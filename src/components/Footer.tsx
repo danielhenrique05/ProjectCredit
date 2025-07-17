@@ -1,4 +1,5 @@
 import React from 'react';
+import Logo from '../imgs/d&blogo.png'
 import { Facebook, Instagram, Twitter, Linkedin, Mail, Phone } from 'lucide-react';
 
 interface FooterProps {
@@ -10,14 +11,13 @@ const Footer: React.FC<FooterProps> = ({ onSectionChange }) => {
     <footer className="bg-gray-800 text-white py-12">
       <div className="container mx-auto px-4">
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {/* Sobre a Empresa */}
           <div>
             <div className="flex items-center space-x-2 mb-4">
-              <div className="bg-blue-600 text-white p-2 rounded-lg">
-                <span className="font-bold text-xl">CF</span>
+              <div className="text-white p-2 rounded-lg">
+                <img className="h-16 w-16" src={Logo} alt="" />
               </div>
               <div>
-                <h3 className="text-xl font-bold">CrediFinance</h3>
+                <h3 className="text-xl font-bold">d&b Credi</h3>
                 <p className="text-sm text-gray-400">Crédito que transforma vidas</p>
               </div>
             </div>

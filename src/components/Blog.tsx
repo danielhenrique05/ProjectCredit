@@ -26,7 +26,7 @@ const Blog: React.FC = () => {
                   <Calendar className="w-4 h-4 mr-1" />
                   <span className="mr-4">{new Date(post.date).toLocaleDateString('pt-BR')}</span>
                   <User className="w-4 h-4 mr-1" />
-                  <span>{post.author}</span>
+                  <span>{post.author}</span> 
                 </div>
                 <span className="inline-block bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded-full mb-3">
                   {post.category}
