@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Menu, X, Phone, Mail } from 'lucide-react';
+import Logo from '../imgs/d&blogo.png'
 
 interface HeaderProps {
   currentSection: string;
@@ -43,11 +44,11 @@ const Header: React.FC<HeaderProps> = ({ currentSection, onSectionChange }) => {
       <nav className="container mx-auto px-4 py-4">
         <div className="flex justify-between items-center">
           <div className="flex items-center space-x-2">
-            <div className="bg-blue-600 text-white p-2 rounded-lg">
-              <span className="font-bold text-xl">CF</span>
+            <div className="bg-blue-60 text-white p-2 rounded-lg">
+              <img className="w-18 h-16 " src={Logo} alt="logo da empresa" />
             </div>
             <div>
-              <h1 className="text-xl font-bold text-gray-800">CrediFinance</h1>
+              <h1 className="text-xl font-bold text-gray-800">d&b Credi</h1>
               <p className="text-sm text-gray-600">Crédito que transforma vidas</p>
             </div>
           </div>

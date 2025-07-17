@@ -1,5 +1,5 @@
 import React from 'react';
-import { CreditCard, Users, TrendingUp, Building, Clock, FileText, DollarSign } from 'lucide-react';
+import { CreditCard, Users, TrendingUp, Building  } from 'lucide-react';
 import { creditProducts } from '../data/creditProducts';
 
 interface ProductsProps {
@@ -35,7 +35,7 @@ const Products: React.FC<ProductsProps> = ({ onSectionChange }) => {
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
           {creditProducts.map((product) => (
             <div key={product.id} className="bg-white rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300 overflow-hidden">
-              <div className="p-6">
+              <div className="p-8">
                 <div className="mb-4">
                   {getIcon(product.icon)}
                 </div>
@@ -49,16 +49,19 @@ const Products: React.FC<ProductsProps> = ({ onSectionChange }) => {
                       R$ {product.minAmount.toLocaleString()} - R$ {product.maxAmount.toLocaleString()}
                     </span>
                   </div>
+
                   <div className="flex items-center justify-between">
                     <span className="text-sm text-gray-500">Prazo:</span>
                     <span className="font-semibold text-gray-700">
                       {product.minTerm} - {product.maxTerm} meses
                     </span>
                   </div>
+                  
                   <div className="flex items-center justify-between">
                     <span className="text-sm text-gray-500">Taxa:</span>
                     <span className="font-semibold text-green-600">{product.interestRate}</span>
                   </div>
+                  
                   <div className="flex items-center justify-between">
                     <span className="text-sm text-gray-500">Carência:</span>
                     <span className="font-semibold text-gray-700">{product.gracePeriod}</span>
@@ -74,7 +77,7 @@ const Products: React.FC<ProductsProps> = ({ onSectionChange }) => {
                         {req}
                       </li>
                     ))}
-                    {product.requirements.length > 3 && (
+                    {product.requirements.length > 3 &&  (
                       <li className="text-blue-600 font-medium">
                         +{product.requirements.length - 3} outros documentos
                       </li>
