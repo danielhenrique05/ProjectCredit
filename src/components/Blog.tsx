@@ -12,7 +12,6 @@ const Blog: React.FC = () => {
             Dicas, cases de sucesso e informações importantes sobre o mundo do crédito
           </p>
         </div>
-
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
           {blogPosts.map((post) => (
             <article key={post.id} className="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300">
@@ -40,7 +39,6 @@ const Blog: React.FC = () => {
             </article>
           ))}
         </div>
-
         <div className="text-center">
           <button className="bg-blue-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-blue-700 transition-colors">
             Ver Todos os Posts

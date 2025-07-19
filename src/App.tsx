@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Header from './components/Header';
 import Hero from './components/Hero';
 import About from './components/About';
@@ -10,6 +10,11 @@ import Footer from './components/Footer';
 
 function App() {
   const [currentSection, setCurrentSection] = useState('home');
+
+  useEffect(() => {
+    window.scrollTo({top: 0, behavior: "smooth"})
+  }, [currentSection])
+
 
   const renderSection = () => {
     switch (currentSection) {

@@ -35,13 +35,13 @@ const Simulator: React.FC<SimulatorProps> = ({onSectionChange}) => {
     <section className="bg-gray-50">
   <div className="text-center py-20 px-4">
     <h2 className="text-4xl font-bold text-gray-800 mb-4">Simulador de Crédito</h2>
-    <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+    <p className="text-xl text-gray-600 max-w-3xl mx-auto ">
       Descubra quanto você pode pagar mensalmente e faça sua solicitação
     </p>
   </div>
 
-  <div className="flex items-center justify-center min-h-screen bg-gray-50 1px-4">
-    <div className="bg-white rounded-lg shadow-lg p-8 w-full max-w-[80rem]">
+  <div className="flex items-center justify-center mb-16 bg-gray-50 1px-4">
+    <div className="bg-white rounded-lg shadow-lg p-8 w-full max-w-[85rem]">
       <div className="flex items-center mb-6">
         <Calculator className="w-8 h-8 text-blue-600 mr-3" />
         <h3 className="text-2xl font-bold text-gray-800">Calcule sua Parcela</h3>

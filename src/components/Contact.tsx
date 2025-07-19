@@ -42,10 +42,8 @@ const Contact: React.FC = () => {
         </div>
 
         <div className="grid lg:grid-cols-2 gap-12">
-          {/* Informações de Contato */}
           <div>
             <h3 className="text-2xl font-bold text-gray-800 mb-8">Informações de Contato</h3>
-            
             <div className="space-y-6 mb-8">
               <div className="flex items-start space-x-4">
                 <div className="bg-blue-100 p-3 rounded-full">
@@ -57,7 +55,6 @@ const Contact: React.FC = () => {
                   <p className="text-gray-600">(11) 9 9999-9999</p>
                 </div>
               </div>
-
               <div className="flex items-start space-x-4">
                 <div className="bg-green-100 p-3 rounded-full">
                   <Mail className="w-6 h-6 text-green-600" />
@@ -68,7 +65,6 @@ const Contact: React.FC = () => {
                   <p className="text-gray-600">atendimento@credifinance.com.br</p>
                 </div>
               </div>
-
               <div className="flex items-start space-x-4">
                 <div className="bg-yellow-100 p-3 rounded-full">
                   <Clock className="w-6 h-6 text-yellow-600" />
