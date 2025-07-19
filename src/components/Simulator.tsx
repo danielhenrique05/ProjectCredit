@@ -1,7 +1,12 @@
 import React, { useState } from 'react';
 import { Calculator, MessageCircle } from 'lucide-react';
 
-const Simulator: React.FC = () => {
+interface SimulatorProps{
+  onSectionChange: (section:string) => void
+}
+
+
+const Simulator: React.FC<SimulatorProps> = ({onSectionChange}) => {
   const [amount, setAmount] = useState<number>(10000);
   const [term, setTerm] = useState<number>(12);
   const [interestRate] = useState<number>(1.5);
@@ -25,18 +30,9 @@ const Simulator: React.FC = () => {
   const totalAmount = calculateInstallment() * term;
   const totalInterest = totalAmount - amount;
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
-    const { name, value } = e.target;
-    setFormData(prev => ({
-      ...prev,
-      [name]: value
-    }));
-  };
-
 
   return (
     <section className="bg-gray-50">
-  {/* Título e subtítulo */}
   <div className="text-center py-20 px-4">
     <h2 className="text-4xl font-bold text-gray-800 mb-4">Simulador de Crédito</h2>
     <p className="text-xl text-gray-600 max-w-3xl mx-auto">
@@ -92,7 +88,6 @@ const Simulator: React.FC = () => {
           </div>
         </div>
 
-        {/* Resumo da Simulação */}
         <div className="bg-blue-50 p-6 rounded-lg">
           <h4 className="font-semibold text-gray-800 mb-4">Resumo da Simulação</h4>
           <div className="space-y-3">
@@ -132,7 +127,7 @@ const Simulator: React.FC = () => {
         </div>
 
         <button
-          onClick={() => setShowApplication(true)}
+          onClick={() => onSectionChange('contact')}
           className="w-full bg-blue-600 text-white py-3 rounded-lg font-semibold hover:bg-blue-700 transition-colors flex items-center justify-center space-x-2"
         >
           <MessageCircle className="w-5 h-5" />

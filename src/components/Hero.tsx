@@ -19,6 +19,7 @@ const Hero: React.FC<HeroProps> = ({ onSectionChange }) => {
               Juros baixos, processo simples e aprovação rápida.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 mb-12">
+              
               <button
                 onClick={() => onSectionChange('simulator')}
                 className="bg-yellow-400 text-blue-900 px-8 py-4 rounded-lg font-semibold hover:bg-yellow-300 transition-colors flex items-center justify-center space-x-2"

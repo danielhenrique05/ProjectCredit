@@ -20,7 +20,7 @@ function App() {
       case 'products':
         return <Products onSectionChange={setCurrentSection} />;
       case 'simulator':
-        return <Simulator />;
+        return <Simulator onSectionChange={setCurrentSection} />;
       case 'blog':
         return <Blog />;
       case 'contact':
