@@ -4,9 +4,9 @@ import Hero from './components/Hero';
 import About from './components/About';
 import Products from './components/Products';
 import Simulator from './components/Simulator';
-import Blog from './components/Blog';
-import Contact from './components/Contact';
+import Cartas from './components/Cartas'; 
 import Footer from './components/Footer';
+import Imoveis from './components/Imoveis';
 
 function App() {
   const [currentSection, setCurrentSection] = useState('home');
@@ -14,7 +14,6 @@ function App() {
   useEffect(() => {
     window.scrollTo({top: 0, behavior: "smooth"})
   }, [currentSection])
-
 
   const renderSection = () => {
     switch (currentSection) {
@@ -24,12 +23,12 @@ function App() {
         return <About />;
       case 'products':
         return <Products onSectionChange={setCurrentSection} />;
+      case 'imoveis':
+        return <Imoveis />;
       case 'simulator':
         return <Simulator onSectionChange={setCurrentSection} />;
-      case 'blog':
-        return <Blog />;
-      case 'contact':
-        return <Contact />;
+      case 'cartas': // <-- CORRIGIDO: tem que ser tudo minúsculo igual aos botões!
+        return <Cartas />;
       default:
         return <Hero onSectionChange={setCurrentSection} />;
     }

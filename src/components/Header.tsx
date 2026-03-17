@@ -10,13 +10,14 @@ interface HeaderProps {
 const Header: React.FC<HeaderProps> = ({ currentSection, onSectionChange }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-  const menuItems = [
+  // Removido o item "Contato"
+const menuItems = [
     { id: 'home', label: 'Início' },
     { id: 'about', label: 'Sobre Nós' },
-    { id: 'products', label: 'Produtos' },
-    { id: 'simulator', label: 'Simulador' },
-    { id: 'blog', label: 'Blog' },
-    { id: 'contact', label: 'Contato' }
+    { id: 'products', label: 'Consignado e Consórcios' }, 
+    { id: 'cartas', label: 'Cartas Contempladas' }, // <-- Aqui o ID tem que ser 'cartas'
+    { id: 'imoveis', label: 'Imóveis' }, 
+    { id: 'simulator', label: 'Simulador' }
   ];
 
   return (

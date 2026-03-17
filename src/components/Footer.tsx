@@ -14,7 +14,7 @@ const Footer: React.FC<FooterProps> = ({ onSectionChange }) => {
           <div>
             <div className="flex items-center space-x-2 mb-4">
               <div className="text-white p-2 rounded-lg">
-                <img className="h-16 w-16" src={Logo} alt="" />
+                <img className="h-16 w-16" src={Logo} alt="d&b Credi" />
               </div>
               <div>
                 <h3 className="text-xl font-bold">d&b Credi</h3>
@@ -22,7 +22,7 @@ const Footer: React.FC<FooterProps> = ({ onSectionChange }) => {
               </div>
             </div>
             <p className="text-gray-400 mb-4">
-              Há mais de 10 anos oferecendo soluções financeiras acessíveis e transformando vidas através do crédito responsável.
+              Há mais de 10 anos oferecendo soluções financeiras acessíveis e transformando vidas através do crédito responsável e consórcios.
             </p>
             <div className="flex space-x-4">
               <a href="#" className="text-gray-400 hover:text-white transition-colors">
@@ -57,7 +57,7 @@ const Footer: React.FC<FooterProps> = ({ onSectionChange }) => {
                   onClick={() => onSectionChange('about')}
                   className="text-gray-400 hover:text-white transition-colors"
                 >
-                  Sobre Nós
+                  Sobre Nós e Contato
                 </button>
               </li>
               <li>
@@ -65,7 +65,23 @@ const Footer: React.FC<FooterProps> = ({ onSectionChange }) => {
                   onClick={() => onSectionChange('products')}
                   className="text-gray-400 hover:text-white transition-colors"
                 >
-                  Produtos
+                  Consignado e Consórcios
+                </button>
+              </li>
+              <li>
+                <button
+                  onClick={() => onSectionChange('cartas')}
+                  className="text-gray-400 hover:text-white transition-colors"
+                >
+                  Cartas Contempladas
+                </button>
+              </li>
+              <li>
+                <button
+                  onClick={() => onSectionChange('imoveis')}
+                  className="text-gray-400 hover:text-white transition-colors"
+                >
+                  Imóveis
                 </button>
               </li>
               <li>
@@ -76,40 +92,32 @@ const Footer: React.FC<FooterProps> = ({ onSectionChange }) => {
                   Simulador
                 </button>
               </li>
-              <li>
-                <button
-                  onClick={() => onSectionChange('contact')}
-                  className="text-gray-400 hover:text-white transition-colors"
-                >
-                  Contato
-                </button>
-              </li>
             </ul>
           </div>
 
-          {/* Produtos */}
+          {/* Produtos e Serviços Novos */}
           <div>
-            <h4 className="text-lg font-semibold mb-4">Nossos Produtos</h4>
+            <h4 className="text-lg font-semibold mb-4">Nossos Serviços</h4>
             <ul className="space-y-2">
               <li>
-                <a href="#" className="text-gray-400 hover:text-white transition-colors">
-                  Microcrédito
-                </a>
+                <button onClick={() => onSectionChange('products')} className="text-gray-400 hover:text-white transition-colors">
+                  Consignado INSS
+                </button>
               </li>
               <li>
-                <a href="#" className="text-gray-400 hover:text-white transition-colors">
-                  CrediSocial
-                </a>
+                <button onClick={() => onSectionChange('products')} className="text-gray-400 hover:text-white transition-colors">
+                  Consórcios
+                </button>
               </li>
               <li>
-                <a href="#" className="text-gray-400 hover:text-white transition-colors">
-                  Juro Zero
-                </a>
+                <button onClick={() => onSectionChange('cartas')} className="text-gray-400 hover:text-white transition-colors">
+                  Cartas Contempladas
+                </button>
               </li>
               <li>
-                <a href="#" className="text-gray-400 hover:text-white transition-colors">
-                  Capital de Giro
-                </a>
+                <button onClick={() => onSectionChange('imoveis')} className="text-gray-400 hover:text-white transition-colors">
+                  Imóveis à Venda
+                </button>
               </li>
             </ul>
           </div>
@@ -135,7 +143,7 @@ const Footer: React.FC<FooterProps> = ({ onSectionChange }) => {
             </div>
             <div className="mt-4">
               <a
-                href="https://wa.me/5511999999999"
+                href="https://wa.me/5511987654321"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-block bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 transition-colors"
@@ -149,7 +157,7 @@ const Footer: React.FC<FooterProps> = ({ onSectionChange }) => {
         <div className="border-t border-gray-700 mt-8 pt-8">
           <div className="flex flex-col md:flex-row justify-between items-center">
             <p className="text-gray-400 text-sm">
-              © 2024 CrediFinance. Todos os direitos reservados.
+              © 2024 d&b Credi. Todos os direitos reservados.
             </p>
             <div className="flex space-x-4 mt-4 md:mt-0">
               <a href="#" className="text-gray-400 hover:text-white text-sm transition-colors">
