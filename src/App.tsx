@@ -7,38 +7,53 @@ import Simulator from './components/Simulator';
 import Cartas from './components/Cartas'; 
 import Footer from './components/Footer';
 import Imoveis from './components/Imoveis';
+import ImovelDetalhes from './components/ImovelDetalhes'; 
 
 function App() {
   const [currentSection, setCurrentSection] = useState('home');
+  const [imovelSelecionado, setImovelSelecionado] = useState<any | null>(null);
 
   useEffect(() => {
     window.scrollTo({top: 0, behavior: "smooth"})
-  }, [currentSection])
+  }, [currentSection, imovelSelecionado])
+
+  const handleSectionChange = (section: string) => {
+    setImovelSelecionado(null);
+    setCurrentSection(section);
+  };
 
   const renderSection = () => {
     switch (currentSection) {
       case 'home':
-        return <Hero onSectionChange={setCurrentSection} />;
+        return <Hero onSectionChange={handleSectionChange} />;
       case 'about':
         return <About />;
       case 'products':
-        return <Products onSectionChange={setCurrentSection} />;
+        return <Products onSectionChange={handleSectionChange} />;
       case 'imoveis':
-        return <Imoveis />;
+        if (imovelSelecionado) {
+          return (
+            <ImovelDetalhes 
+              imovel={imovelSelecionado} 
+              onBack={() => setImovelSelecionado(null)} 
+            />
+          );
+        }
+        return <Imoveis onSelectImovel={(imovel) => setImovelSelecionado(imovel)} />;
       case 'simulator':
-        return <Simulator onSectionChange={setCurrentSection} />;
-      case 'cartas': // <-- CORRIGIDO: tem que ser tudo minúsculo igual aos botões!
+        return <Simulator onSectionChange={handleSectionChange} />;
+      case 'cartas':
         return <Cartas />;
       default:
-        return <Hero onSectionChange={setCurrentSection} />;
+        return <Hero onSectionChange={handleSectionChange} />;
     }
   };
 
   return (
     <div className="min-h-screen bg-gray-50">
-      <Header currentSection={currentSection} onSectionChange={setCurrentSection} />
+      <Header currentSection={currentSection} onSectionChange={handleSectionChange} />
       {renderSection()}
-      <Footer onSectionChange={setCurrentSection} />
+      <Footer onSectionChange={handleSectionChange} />
     </div>
   );
 }

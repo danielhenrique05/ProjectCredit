@@ -1,7 +1,10 @@
 import React from 'react';
-import { MapPin, Bed, Bath, Square, Phone } from 'lucide-react';
+import { MapPin, Bed, Bath, Square, Phone, Search } from 'lucide-react';
 
-// Dados fictícios dos imóveis (depois você pode alterar ou conectar a um banco de dados)
+interface ImoveisProps {
+  onSelectImovel: (imovel: any) => void;
+}
+
 const imoveis = [
   {
     id: 1,
@@ -11,7 +14,10 @@ const imoveis = [
     beds: 3,
     baths: 2,
     area: '120m²',
-    image: 'https://images.pexels.com/photos/439227/pexels-photo-439227.jpeg?auto=compress&cs=tinysrgb&w=800'
+    images: [
+      'https://images.pexels.com/photos/439227/pexels-photo-439227.jpeg?auto=compress&cs=tinysrgb&w=800',
+      'https://images.pexels.com/photos/271624/pexels-photo-271624.jpeg?auto=compress&cs=tinysrgb&w=800'
+    ]
   },
   {
     id: 2,
@@ -21,7 +27,10 @@ const imoveis = [
     beds: 4,
     baths: 3,
     area: '250m²',
-    image: 'https://images.pexels.com/photos/106399/pexels-photo-106399.jpeg?auto=compress&cs=tinysrgb&w=800'
+    images: [
+      'https://images.pexels.com/photos/106399/pexels-photo-106399.jpeg?auto=compress&cs=tinysrgb&w=800',
+      'https://images.pexels.com/photos/221027/pexels-photo-221027.jpeg?auto=compress&cs=tinysrgb&w=800'
+    ]
   },
   {
     id: 3,
@@ -31,11 +40,14 @@ const imoveis = [
     beds: 1,
     baths: 1,
     area: '45m²',
-    image: 'https://images.pexels.com/photos/3288102/pexels-photo-3288102.png?auto=compress&cs=tinysrgb&w=800'
+    images: [
+      'https://images.pexels.com/photos/3288102/pexels-photo-3288102.png?auto=compress&cs=tinysrgb&w=800',
+      'https://images.pexels.com/photos/1643383/pexels-photo-1643383.jpeg?auto=compress&cs=tinysrgb&w=800'
+    ]
   }
 ];
 
-const Imoveis: React.FC = () => {
+const Imoveis: React.FC<ImoveisProps> = ({ onSelectImovel }) => {
   return (
     <section className="py-20 bg-gray-50">
       <div className="container mx-auto px-4">
@@ -48,14 +60,14 @@ const Imoveis: React.FC = () => {
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {imoveis.map((imovel) => (
-            <div key={imovel.id} className="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-shadow">
-              <div className="relative h-64">
+            <div key={imovel.id} className="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-shadow group">
+              <div className="relative h-64 cursor-pointer" onClick={() => onSelectImovel(imovel)}>
                 <img 
-                  src={imovel.image} 
+                  src={imovel.images[0]} 
                   alt={imovel.title} 
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                 />
-                <div className="absolute top-4 right-4 bg-blue-600 text-white font-bold px-3 py-1 rounded-lg">
+                <div className="absolute top-4 right-4 bg-blue-600 text-white font-bold px-3 py-1 rounded-lg shadow-lg">
                   {imovel.price}
                 </div>
               </div>
@@ -83,15 +95,25 @@ const Imoveis: React.FC = () => {
                   </div>
                 </div>
                 
-                <a 
-                  href={`https://wa.me/5511987654321?text=Olá! Tenho interesse no imóvel: ${imovel.title}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-full flex items-center justify-center bg-green-600 text-white py-3 rounded-lg font-semibold hover:bg-green-700 transition-colors"
-                >
-                  <Phone className="w-4 h-4 mr-2" />
-                  Tenho Interesse
-                </a>
+                <div className="flex flex-col gap-3">
+                  <button 
+                    onClick={() => onSelectImovel(imovel)}
+                    className="w-full flex items-center justify-center bg-blue-50 text-blue-600 py-3 rounded-lg font-semibold hover:bg-blue-100 transition-colors"
+                  >
+                    <Search className="w-4 h-4 mr-2" />
+                    Ver Detalhes
+                  </button>
+
+                  <a 
+                    href={`https://wa.me/5511987654321?text=Olá! Tenho interesse no imóvel: ${imovel.title}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-full flex items-center justify-center bg-green-600 text-white py-3 rounded-lg font-semibold hover:bg-green-700 transition-colors"
+                  >
+                    <Phone className="w-4 h-4 mr-2" />
+                    Tenho Interesse
+                  </a>
+                </div>
               </div>
             </div>
           ))}
