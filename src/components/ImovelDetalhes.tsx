@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { MapPin, Bed, Bath, Square, ArrowLeft, Phone, CheckCircle } from 'lucide-react';
+import { MapPin, Bed, Bath, Square, ArrowLeft, Phone, CheckCircle, ChevronLeft, ChevronRight } from 'lucide-react'; //
 
 interface Imovel {
   id: number;
@@ -20,6 +20,19 @@ interface ImovelDetalhesProps {
 const ImovelDetalhes: React.FC<ImovelDetalhesProps> = ({ imovel, onBack }) => {
   const [fotoAtiva, setFotoAtiva] = useState(imovel.images[0]);
 
+  // Função para navegar entre as imagens
+  const navegarImagem = (direcao: 'proxima' | 'anterior') => {
+    const indiceAtual = imovel.images.indexOf(fotoAtiva);
+    let novoIndice;
+
+    if (direcao === 'proxima') {
+      novoIndice = (indiceAtual + 1) % imovel.images.length;
+    } else {
+      novoIndice = (indiceAtual - 1 + imovel.images.length) % imovel.images.length;
+    }
+    setFotoAtiva(imovel.images[novoIndice]);
+  };
+
   return (
     <section className="py-12 bg-white min-h-screen">
       <div className="container mx-auto px-4">
@@ -33,8 +46,25 @@ const ImovelDetalhes: React.FC<ImovelDetalhesProps> = ({ imovel, onBack }) => {
         <div className="grid lg:grid-cols-12 gap-10">
           
           <div className="lg:col-span-8">
-            <div className="rounded-3xl overflow-hidden shadow-xl bg-gray-200 mb-4 h-[500px]">
+            {/* Container da imagem principal com botões de navegação */}
+            <div className="relative group rounded-3xl overflow-hidden shadow-xl bg-gray-200 mb-4 h-[500px]">
               <img src={fotoAtiva} className="w-full h-full object-cover transition-all duration-500" alt="Foto principal" />
+              
+              {/* Botão Anterior */}
+              <button 
+                onClick={() => navegarImagem('anterior')}
+                className="absolute left-4 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white p-3 rounded-full shadow-lg transition-all opacity-0 group-hover:opacity-100 text-blue-600"
+              >
+                <ChevronLeft className="w-6 h-6" />
+              </button>
+
+              {/* Botão Próximo */}
+              <button 
+                onClick={() => navegarImagem('proxima')}
+                className="absolute right-4 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white p-3 rounded-full shadow-lg transition-all opacity-0 group-hover:opacity-100 text-blue-600"
+              >
+                <ChevronRight className="w-6 h-6" />
+              </button>
             </div>
             
             <div className="grid grid-cols-5 gap-3">
