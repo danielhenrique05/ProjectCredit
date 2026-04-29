@@ -1,21 +1,25 @@
 import React, { useEffect, useState } from 'react';
+import { BarChart3, Building2, FileCog, Users } from 'lucide-react';
+import { Navigate, Route, Routes } from 'react-router-dom';
+import AdminLayout from './admin/AdminLayout';
+import AdminLogin from './admin/AdminLogin';
 import Header from './components/Header';
 import Hero from './components/Hero';
 import About from './components/About';
 import Products from './components/Products';
 import Simulator from './components/Simulator';
-import Cartas from './components/Cartas'; 
+import Cartas from './components/Cartas';
 import Footer from './components/Footer';
 import Imoveis from './components/Imoveis';
-import ImovelDetalhes from './components/ImovelDetalhes'; 
+import ImovelDetalhes from './components/ImovelDetalhes';
 
-function App() {
+const PublicSite = () => {
   const [currentSection, setCurrentSection] = useState('home');
   const [imovelSelecionado, setImovelSelecionado] = useState<any | null>(null);
 
   useEffect(() => {
-    window.scrollTo({top: 0, behavior: "smooth"})
-  }, [currentSection, imovelSelecionado])
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }, [currentSection, imovelSelecionado]);
 
   const handleSectionChange = (section: string) => {
     setImovelSelecionado(null);
@@ -33,9 +37,9 @@ function App() {
       case 'imoveis':
         if (imovelSelecionado) {
           return (
-            <ImovelDetalhes 
-              imovel={imovelSelecionado} 
-              onBack={() => setImovelSelecionado(null)} 
+            <ImovelDetalhes
+              imovel={imovelSelecionado}
+              onBack={() => setImovelSelecionado(null)}
             />
           );
         }
@@ -55,6 +59,47 @@ function App() {
       {renderSection()}
       <Footer onSectionChange={handleSectionChange} />
     </div>
+  );
+};
+
+const AdminDashboardHome = () => {
+  const stats = [
+    { label: 'Usuarios ativos', value: '128', icon: Users },
+    { label: 'Fluxos em analise', value: '24', icon: FileCog },
+    { label: 'Operacoes do mes', value: '312', icon: BarChart3 },
+    { label: 'Imoveis publicados', value: '18', icon: Building2 },
+  ];
+
+  return (
+    <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
+      {stats.map(({ label, value, icon: Icon }) => (
+        <article
+          key={label}
+          className="rounded-[24px] border border-blue-100 bg-white p-5 shadow-sm transition hover:-translate-y-0.5 hover:shadow-md"
+        >
+          <div className="mb-4 flex h-11 w-11 items-center justify-center rounded-2xl bg-blue-50 text-blue-700">
+            <Icon className="h-5 w-5" />
+          </div>
+          <p className="text-sm text-gray-500">{label}</p>
+          <strong className="mt-2 block text-3xl font-semibold tracking-tight text-gray-900">
+            {value}
+          </strong>
+        </article>
+      ))}
+    </div>
+  );
+};
+
+function App() {
+  return (
+    <Routes>
+      <Route path="/" element={<PublicSite />} />
+      <Route path="/admin" element={<AdminLogin />} />
+      <Route element={<AdminLayout />}>
+        <Route path="/admin/dashboard" element={<AdminDashboardHome />} />
+      </Route>
+      <Route path="*" element={<Navigate to="/" replace />} />
+    </Routes>
   );
 }
 
