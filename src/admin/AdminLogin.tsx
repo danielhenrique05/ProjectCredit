@@ -13,7 +13,6 @@ const AdminLogin = () => {
 
   useEffect(() => {
     if (!hasSupabaseConfig) {
-      setError('Configuracao do Supabase ausente na Vercel. Defina as variaveis VITE_SUPABASE_URL e VITE_SUPABASE_PUBLISHABLE_KEY.');
       setIsCheckingSession(false);
       return;
     }
@@ -44,7 +43,7 @@ const AdminLogin = () => {
     }
 
     if (!hasSupabaseConfig) {
-      setError('Configuracao do Supabase ausente na Vercel.');
+      setIsLoading(false);
       return;
     }
 
