@@ -1,8 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import React, { Suspense, lazy, useEffect, useState } from 'react';
 import { BarChart3, Building2, FileCog, Users } from 'lucide-react';
 import { Navigate, Route, Routes } from 'react-router-dom';
-import AdminLayout from './admin/AdminLayout';
-import AdminLogin from './admin/AdminLogin';
 import Header from './components/Header';
 import Hero from './components/Hero';
 import About from './components/About';
@@ -12,6 +10,9 @@ import Cartas from './components/Cartas';
 import Footer from './components/Footer';
 import Imoveis from './components/Imoveis';
 import ImovelDetalhes from './components/ImovelDetalhes';
+
+const AdminLogin = lazy(() => import('./admin/AdminLogin'));
+const AdminLayout = lazy(() => import('./admin/AdminLayout'));
 
 const PublicSite = () => {
   const [currentSection, setCurrentSection] = useState('home');
@@ -92,14 +93,22 @@ const AdminDashboardHome = () => {
 
 function App() {
   return (
-    <Routes>
-      <Route path="/" element={<PublicSite />} />
-      <Route path="/admin" element={<AdminLogin />} />
-      <Route element={<AdminLayout />}>
-        <Route path="/admin/dashboard" element={<AdminDashboardHome />} />
-      </Route>
-      <Route path="*" element={<Navigate to="/" replace />} />
-    </Routes>
+    <Suspense
+      fallback={
+        <div className="flex min-h-screen items-center justify-center bg-gray-50 px-4 text-gray-600">
+          Carregando...
+        </div>
+      }
+    >
+      <Routes>
+        <Route path="/" element={<PublicSite />} />
+        <Route path="/admin" element={<AdminLogin />} />
+        <Route element={<AdminLayout />}>
+          <Route path="/admin/dashboard" element={<AdminDashboardHome />} />
+        </Route>
+        <Route path="*" element={<Navigate to="/" replace />} />
+      </Routes>
+    </Suspense>
   );
 }
 

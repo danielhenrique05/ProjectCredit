@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { AlertCircle, Loader2, LockKeyhole, Mail } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
-import { supabase } from '../lib/supabase';
+import { getSupabaseClient, hasSupabaseConfig } from '../lib/supabase';
 
 const AdminLogin = () => {
   const navigate = useNavigate();
@@ -9,10 +9,17 @@ const AdminLogin = () => {
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const [isLoading, setIsLoading] = useState(false);
-  const [isCheckingSession, setIsCheckingSession] = useState(true);
+  const [isCheckingSession, setIsCheckingSession] = useState(hasSupabaseConfig);
 
   useEffect(() => {
+    if (!hasSupabaseConfig) {
+      setError('Configuracao do Supabase ausente na Vercel. Defina as variaveis VITE_SUPABASE_URL e VITE_SUPABASE_PUBLISHABLE_KEY.');
+      setIsCheckingSession(false);
+      return;
+    }
+
     const checkSession = async () => {
+      const supabase = getSupabaseClient();
       const {
         data: { session },
       } = await supabase.auth.getSession();
@@ -36,9 +43,15 @@ const AdminLogin = () => {
       return;
     }
 
+    if (!hasSupabaseConfig) {
+      setError('Configuracao do Supabase ausente na Vercel.');
+      return;
+    }
+
     setIsLoading(true);
     setError('');
 
+    const supabase = getSupabaseClient();
     const { error: signInError } = await supabase.auth.signInWithPassword({
       email: email.trim(),
       password,

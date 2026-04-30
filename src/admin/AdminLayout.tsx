@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { LayoutDashboard, Loader2, LogOut, ShieldCheck } from 'lucide-react';
 import { Navigate, Outlet, useNavigate } from 'react-router-dom';
 import type { Session } from '@supabase/supabase-js';
-import { supabase } from '../lib/supabase';
+import { getSupabaseClient, hasSupabaseConfig } from '../lib/supabase';
 
 const AdminLayout = () => {
   const navigate = useNavigate();
@@ -10,7 +10,13 @@ const AdminLayout = () => {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
+    if (!hasSupabaseConfig) {
+      setIsLoading(false);
+      return;
+    }
+
     const loadSession = async () => {
+      const supabase = getSupabaseClient();
       const {
         data: { session: activeSession },
       } = await supabase.auth.getSession();
@@ -19,6 +25,7 @@ const AdminLayout = () => {
       setIsLoading(false);
     };
 
+    const supabase = getSupabaseClient();
     const {
       data: { subscription },
     } = supabase.auth.onAuthStateChange((_, nextSession) => {
@@ -34,6 +41,7 @@ const AdminLayout = () => {
   }, []);
 
   const handleLogout = async () => {
+    const supabase = getSupabaseClient();
     await supabase.auth.signOut();
     navigate('/admin', { replace: true });
   };
